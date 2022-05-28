@@ -190,6 +190,7 @@ NSString *const CUSTOM_SELECTOR = @"_CUSTOM_SELECTOR_";
 
   }
 #endif // !TARGET_OS_OSX
+  [self initWebView];
   return self;
 }
 
@@ -398,9 +399,9 @@ NSString *const CUSTOM_SELECTOR = @"_CUSTOM_SELECTOR_";
   return wkWebViewConfig;
 }
 
-- (void)didMoveToWindow
+- (void)initWebView
 {
-  if (self.window != nil && _webView == nil) {
+  if (_webView == nil) {
     WKWebViewConfiguration *wkWebViewConfig = [self setUpWkWebViewConfig];
 #if !TARGET_OS_OSX
     _webView = [[WKWebView alloc] initWithFrame:self.bounds configuration: wkWebViewConfig];
